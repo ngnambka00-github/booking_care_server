@@ -21,6 +21,8 @@ let initWebRoutes = (app) => {
     router.put("/api/edit-user", userController.handlerEditUser);
     router.delete("/api/delete-user", userController.handlerDeleteUser);
 
+    router.get("/allcode", userController.getAllCode);
+
     // viết theo chuẩn rest api 
     // create -> post
     // xóa -> delete 

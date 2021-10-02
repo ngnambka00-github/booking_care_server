@@ -211,10 +211,36 @@ let editUserData = (data) => {
     });
 }
 
+let getAllCodeService = (typeInput) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!typeInput) {
+                resolve({
+                    errorCode: 1,
+                    errorMessage: 'Missing required parameter !'
+                });
+            } else {
+                let res = {};
+                let allCode = await db.Allcode.findAll({
+                    where: { type: typeInput, }
+                });
+                res.errorcode = 0;
+                res.errorMessage = "Done"
+                res.data = allCode;
+
+                resolve(res);
+            }
+        } catch (error) {
+            reject(error);
+        }
+    })
+}
+
 module.exports = {
     handleUserLogin,
     getAllUser,
     createNewUser,
     deleteUserById,
     editUserData,
+    getAllCodeService,
 }
